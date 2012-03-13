@@ -59,10 +59,20 @@
 }
 
 - (IBAction)addActionHandler:(id)sender {
-	
-	EditorViewController *editorViewController = [[EditorViewController alloc] init];
-	
-	
+    
+    UIImage *shutterImage = [UIImage imageNamed:@"shutter.png"];
+    UIImageView *preload = [[[UIImageView alloc] initWithImage:shutterImage] autorelease];
+    preload.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+    
+    
+    [self.view addSubview:preload];
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onClickAddGif:) userInfo:preload repeats:NO];
+    }
+
+- (void)onClickAddGif:(NSTimer *)timer{
+   
+    
+    EditorViewController *editorViewController = [[EditorViewController alloc] init];
 	NSLog(@" editorViewController: %@", editorViewController);
 	[editorViewController newAnimation];
 	
@@ -74,7 +84,9 @@
 	//pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 	//pickerController.cameraOverlayView;
 	
-	[self presentModalViewController:editorViewController.imagePickerController animated:YES];
+	[self presentModalViewController:editorViewController.imagePickerController animated:NO];
+    [timer.userInfo removeFromSuperview];
+
 }
 
 @end

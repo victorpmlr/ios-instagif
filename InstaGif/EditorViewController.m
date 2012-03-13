@@ -20,28 +20,35 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+        
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.delegate = self;
-		self.imagePickerController = [[[UIImagePickerController alloc] init] autorelease];
-		self.imagePickerController.delegate = self;
-		
-		self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-		self.imagePickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-		self.imagePickerController.showsCameraControls = NO;
-		
-		// setup our custom overlay view for the camera
-		//
-		// ensure that our custom view's frame fits within the parent frame
-		CGRect overlayViewFrame = self.imagePickerController.cameraOverlayView.frame;
-		CGRect newFrame = CGRectMake(0.0,
-									 0.0,
-									 CGRectGetWidth(overlayViewFrame),
-									 self.view.frame.size.height);
-		self.view.frame = newFrame;
-		[self.imagePickerController.cameraOverlayView addSubview:self.view];
+        self.delegate = self;
+        
+        
+        self.imagePickerController = [[[UIImagePickerController alloc] init] autorelease];
+        
+        self.imagePickerController.delegate = self;
+        
+        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.imagePickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        self.imagePickerController.showsCameraControls = NO;
+        
+        // setup our custom overlay view for the camera
+        //
+        // ensure that our custom view's frame fits within the parent frame
+        CGRect overlayViewFrame = self.imagePickerController.cameraOverlayView.frame;
+        
+        CGRect newFrame = CGRectMake(0.0,
+                                     0.0,
+                                     CGRectGetWidth(overlayViewFrame),
+                                     CGRectGetHeight(overlayViewFrame));
+        self.view.frame = newFrame;
+        
+        [self.imagePickerController.cameraOverlayView addSubview:self.view];
     }
-    return self;
+    
+        return self;
 }
 
 - (void)dealloc {
@@ -65,7 +72,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
 	self.view.opaque = NO;
 	self.view.backgroundColor = [UIColor clearColor];
 	
@@ -89,6 +96,8 @@
 
 - (void)newAnimation
 {
+    
+    
 }
 
 - (IBAction)takePicture:(id)sender {
