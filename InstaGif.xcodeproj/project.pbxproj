@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F71E926150E5129003607A2 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71E924150E5129003607A2 /* EditorViewController.m */; };
+		2F71E927150E5129003607A2 /* EditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F71E925150E5129003607A2 /* EditorViewController.xib */; };
 		2F74CF2E150E339300B7F23D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F74CF2D150E339300B7F23D /* UIKit.framework */; };
 		2F74CF30150E339300B7F23D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F74CF2F150E339300B7F23D /* Foundation.framework */; };
 		2F74CF32150E339300B7F23D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F74CF31150E339300B7F23D /* CoreGraphics.framework */; };
@@ -18,17 +20,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F71E923150E5129003607A2 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
+		2F71E924150E5129003607A2 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		2F71E925150E5129003607A2 /* EditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditorViewController.xib; sourceTree = "<group>"; };
 		2F74CF29150E339300B7F23D /* InstaGif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaGif.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F74CF2D150E339300B7F23D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2F74CF2F150E339300B7F23D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F74CF31150E339300B7F23D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2F74CF35150E339300B7F23D /* InstaGif-Info.plist */ = {isa = PBXFileReference; path = "InstaGif-Info.plist"; sourceTree = "<group>"; };
+		2F74CF35150E339300B7F23D /* InstaGif-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InstaGif-Info.plist"; sourceTree = "<group>"; };
 		2F74CF37150E339300B7F23D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F74CF39150E339300B7F23D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2F74CF3B150E339300B7F23D /* InstaGif-Prefix.pch */ = {isa = PBXFileReference; path = "InstaGif-Prefix.pch"; sourceTree = "<group>"; };
-		2F74CF3C150E339300B7F23D /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		2F74CF3B150E339300B7F23D /* InstaGif-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InstaGif-Prefix.pch"; sourceTree = "<group>"; };
+		2F74CF3C150E339300B7F23D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2F74CF3D150E339300B7F23D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2F74CF3F150E339300B7F23D /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		2F74CF3F150E339300B7F23D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2F74CF40150E339300B7F23D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2F74CF43150E339300B7F23D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +84,9 @@
 			children = (
 				2F74CF3C150E339300B7F23D /* AppDelegate.h */,
 				2F74CF3D150E339300B7F23D /* AppDelegate.m */,
+				2F71E923150E5129003607A2 /* EditorViewController.h */,
+				2F71E924150E5129003607A2 /* EditorViewController.m */,
+				2F71E925150E5129003607A2 /* EditorViewController.xib */,
 				2F74CF3F150E339300B7F23D /* ViewController.h */,
 				2F74CF40150E339300B7F23D /* ViewController.m */,
 				2F74CF42150E339300B7F23D /* ViewController.xib */,
@@ -150,6 +158,7 @@
 			files = (
 				2F74CF38150E339300B7F23D /* InfoPlist.strings in Resources */,
 				2F74CF44150E339300B7F23D /* ViewController.xib in Resources */,
+				2F71E927150E5129003607A2 /* EditorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +172,7 @@
 				2F74CF3A150E339300B7F23D /* main.m in Sources */,
 				2F74CF3E150E339300B7F23D /* AppDelegate.m in Sources */,
 				2F74CF41150E339300B7F23D /* ViewController.m in Sources */,
+				2F71E926150E5129003607A2 /* EditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +203,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -207,7 +218,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PROVISIONING_PROFILE = "D689BCFC-5333-4B49-A091-2DD960B7B2CA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D689BCFC-5333-4B49-A091-2DD960B7B2CA";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -217,15 +230,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "D689BCFC-5333-4B49-A091-2DD960B7B2CA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D689BCFC-5333-4B49-A091-2DD960B7B2CA";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -234,10 +250,15 @@
 		2F74CF48150E339300B7F23D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InstaGif/InstaGif-Prefix.pch";
 				INFOPLIST_FILE = "InstaGif/InstaGif-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CA76B655-EEE5-472A-81C8-FE90D4610C6E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA76B655-EEE5-472A-81C8-FE90D4610C6E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -245,10 +266,15 @@
 		2F74CF49150E339300B7F23D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christian Fodéré (426DRZ467Q)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InstaGif/InstaGif-Prefix.pch";
 				INFOPLIST_FILE = "InstaGif/InstaGif-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CA76B655-EEE5-472A-81C8-FE90D4610C6E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA76B655-EEE5-472A-81C8-FE90D4610C6E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -272,6 +298,7 @@
 				2F74CF49150E339300B7F23D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

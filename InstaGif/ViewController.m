@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "EditorViewController.h"
 
 @implementation ViewController
 
@@ -55,6 +56,25 @@
 {
     // Return YES for supported orientations
 	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (IBAction)addActionHandler:(id)sender {
+	
+	EditorViewController *editorViewController = [[EditorViewController alloc] init];
+	
+	
+	NSLog(@" editorViewController: %@", editorViewController);
+	[editorViewController newAnimation];
+	
+	//UIImagePickerController *pickerController = [[[UIImagePickerController alloc] init] autorelease];
+	//EditorViewController *editorViewController = [[[EditorViewController alloc] init] autorelease];
+	//[self.view addSubview:pickerController.view];
+	
+	//editorViewController.imagePickerController.delegate = self;
+	//pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+	//pickerController.cameraOverlayView;
+	
+	[self presentModalViewController:editorViewController.imagePickerController animated:YES];
 }
 
 @end
