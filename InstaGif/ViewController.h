@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TableViewController.h"
 @interface ViewController : UIViewController
+
+
 - (IBAction)addActionHandler:(id)sender;
+
+@property (retain, nonatomic) TableViewController *tableViewController;
 
 @end
