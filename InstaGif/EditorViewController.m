@@ -190,10 +190,25 @@
 
 - (void)addTakenPicture:(UIImage *) picture
 {
+    
+    float ratio = [picture size].width / [picture size].height; 
+    
+    
+    
+    if([picture size].width >[picture size].height)
+    {
+        //TODO
+    }
+    else 
+    {
+        picture = [picture resizedImage:CGSizeMake(THUMBS_SIZE, THUMBS_SIZE/ratio) interpolationQuality:kCGInterpolationMedium];
+        picture = [picture croppedImage:CGRectMake(0, ([picture size].height - THUMBS_SIZE)/2, THUMBS_SIZE, THUMBS_SIZE)];
+    }
+    
+    
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:picture];
 	[imageView setFrame:CGRectMake(THUMBS_GAP + pictures.count * (THUMBS_GAP + THUMBS_SIZE), THUMBS_GAP, THUMBS_SIZE, THUMBS_SIZE)];
 	[takenImagesScroller addSubview:imageView];
-	
 	
 	takenImagesScroller.contentSize = CGSizeMake(pictures.count * (THUMBS_GAP + THUMBS_SIZE) + THUMBS_GAP, 2 * THUMBS_GAP + THUMBS_SIZE);
 	
@@ -204,7 +219,7 @@
 	playButton.enabled = YES;
 	doneButton.enabled = YES;
 	
-	overlayImage.image = picture;
+	
 }
 
 
@@ -263,6 +278,7 @@
 	resized = [UIImage imageWithData:jpeg];
 	
 	[pictures addObject:resized];
+    overlayImage.image = resized;
 	
 	[self addTakenPicture:resized];
 	
