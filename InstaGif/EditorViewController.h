@@ -18,7 +18,10 @@
     id <EditorViewControllerDelegate> delegate;
 	UIImagePickerController *imagePickerController;
 	BOOL takingPicture;
+	BOOL playingAnim;
 	NSMutableArray *pictures;
+	UIImageView *overlayImage;
+	UIImageView *animationPlayer;
 	
 	CGPoint startOffset;
 	CGPoint destinationOffset;
@@ -32,6 +35,8 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *takenImagesScroller;
 @property (nonatomic, retain) NSDate *startTime;
 @property (nonatomic, retain) NSTimer *timer;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *playButton;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *pauseButton;
 
 - (IBAction)takePicture:(id)sender;
 - (IBAction)cancelEditor:(id)sender;
@@ -39,6 +44,8 @@
 - (void)endTake;
 - (void) doAnimatedScrollTo:(CGPoint)offset;
 - (void)newAnimation;
+- (IBAction)playHandler:(id)sender;
+- (IBAction)pauseHandler:(id)sender;
 
 @end
 
