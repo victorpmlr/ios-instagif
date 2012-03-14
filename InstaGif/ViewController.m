@@ -11,6 +11,9 @@
 
 @implementation ViewController
 
+@synthesize tableViewController = _tableViewController;
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -22,11 +25,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	self.tableViewController = [[[TableViewController alloc] initWithNibName:@"TableViewController" bundle:nil] autorelease];
+    [self.view insertSubview:self.tableViewController.view atIndex:0];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidUnload
 {
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -89,4 +96,8 @@
 
 }
 
+- (void)dealloc {
+    [_tableViewController release];
+    [super dealloc];
+}
 @end
