@@ -28,7 +28,6 @@
         
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-<<<<<<< HEAD
 		self.delegate = self;
 		self.imagePickerController = [[[UIImagePickerController alloc] init] autorelease];
 		self.imagePickerController.delegate = self;
@@ -47,31 +46,6 @@
 									 CGRectGetHeight(overlayViewFrame));
 		self.view.frame = newFrame;
 		[self.imagePickerController.cameraOverlayView addSubview:self.view];
-=======
-        self.delegate = self;
-        
-        
-        self.imagePickerController = [[[UIImagePickerController alloc] init] autorelease];
-        
-        self.imagePickerController.delegate = self;
-        
-        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.imagePickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-        self.imagePickerController.showsCameraControls = NO;
-        
-        // setup our custom overlay view for the camera
-        //
-        // ensure that our custom view's frame fits within the parent frame
-        CGRect overlayViewFrame = self.imagePickerController.cameraOverlayView.frame;
-        
-        CGRect newFrame = CGRectMake(0.0,
-                                     0.0,
-                                     CGRectGetWidth(overlayViewFrame),
-                                     CGRectGetHeight(overlayViewFrame));
-        self.view.frame = newFrame;
-        
-        [self.imagePickerController.cameraOverlayView addSubview:self.view];
->>>>>>> 69d5674ae59aca63d467e4e77801cac058788945
     }
     
         return self;
@@ -134,7 +108,6 @@
 {
     
     
-<<<<<<< HEAD
 }
 
 - (IBAction)playHandler:(id)sender
@@ -158,8 +131,6 @@
 	[animationPlayer release];
 	
 	takeButton.enabled = YES;
-=======
->>>>>>> 69d5674ae59aca63d467e4e77801cac058788945
 }
 
 - (IBAction)takePicture:(id)sender {
