@@ -37,6 +37,7 @@
 @property (nonatomic, retain) NSTimer *timer;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *playButton;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *pauseButton;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 - (IBAction)takePicture:(id)sender;
 - (IBAction)cancelEditor:(id)sender;
@@ -46,6 +47,7 @@
 - (void)newAnimation;
 - (IBAction)playHandler:(id)sender;
 - (IBAction)pauseHandler:(id)sender;
+- (IBAction)doneHandler:(id)sender;
 
 @end
 

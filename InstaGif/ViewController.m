@@ -73,7 +73,7 @@
    
     
     EditorViewController *editorViewController = [[EditorViewController alloc] init];
-	NSLog(@" editorViewController: %@", editorViewController);
+	//NSLog(@" editorViewController: %@", editorViewController);
 	[editorViewController newAnimation];
 	
 	//UIImagePickerController *pickerController = [[[UIImagePickerController alloc] init] autorelease];

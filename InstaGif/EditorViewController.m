@@ -8,6 +8,7 @@
 
 #import "EditorViewController.h"
 #import "UIImage+Resize.h"
+#import "ExportViewController.h"
 
 @implementation EditorViewController
 
@@ -18,6 +19,7 @@
 @synthesize timer;
 @synthesize playButton;
 @synthesize pauseButton;
+@synthesize doneButton;
 @synthesize startTime;
 
 @class UIColor;
@@ -28,7 +30,6 @@
         
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-<<<<<<< HEAD
 		self.delegate = self;
 		self.imagePickerController = [[[UIImagePickerController alloc] init] autorelease];
 		self.imagePickerController.delegate = self;
@@ -47,31 +48,6 @@
 									 CGRectGetHeight(overlayViewFrame));
 		self.view.frame = newFrame;
 		[self.imagePickerController.cameraOverlayView addSubview:self.view];
-=======
-        self.delegate = self;
-        
-        
-        self.imagePickerController = [[[UIImagePickerController alloc] init] autorelease];
-        
-        self.imagePickerController.delegate = self;
-        
-        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.imagePickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-        self.imagePickerController.showsCameraControls = NO;
-        
-        // setup our custom overlay view for the camera
-        //
-        // ensure that our custom view's frame fits within the parent frame
-        CGRect overlayViewFrame = self.imagePickerController.cameraOverlayView.frame;
-        
-        CGRect newFrame = CGRectMake(0.0,
-                                     0.0,
-                                     CGRectGetWidth(overlayViewFrame),
-                                     CGRectGetHeight(overlayViewFrame));
-        self.view.frame = newFrame;
-        
-        [self.imagePickerController.cameraOverlayView addSubview:self.view];
->>>>>>> 69d5674ae59aca63d467e4e77801cac058788945
     }
     
         return self;
@@ -86,6 +62,7 @@
 	[pauseButton release];
 	[animationPlayer release];
 	[overlayImage release];
+	[doneButton release];
     [super dealloc];
 }
 
@@ -95,6 +72,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+	
+	
 }
 
 #pragma mark - View lifecycle
@@ -119,6 +98,7 @@
 	[self setTakenImagesScroller:nil];
 	[self setPlayButton:nil];
 	[self setPauseButton:nil];
+	[self setDoneButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -133,8 +113,6 @@
 - (void)newAnimation
 {
     
-    
-<<<<<<< HEAD
 }
 
 - (IBAction)playHandler:(id)sender
@@ -149,17 +127,39 @@
 	[self.view addSubview:animationPlayer];
 	
 	takeButton.enabled = NO;
-	
+	playButton.enabled = NO;
+	pauseButton.enabled = YES;
 }
 
 - (IBAction)pauseHandler:(id)sender {
 	[animationPlayer stopAnimating];
 	[animationPlayer removeFromSuperview];
-	[animationPlayer release];
 	
 	takeButton.enabled = YES;
-=======
->>>>>>> 69d5674ae59aca63d467e4e77801cac058788945
+	playButton.enabled = YES;
+	pauseButton.enabled = NO;
+}
+
+- (IBAction)doneHandler:(id)sender {
+	NSString * tempFile = [NSString stringWithFormat:@"%@/%ld", NSTemporaryDirectory(), time(NULL)];
+	
+	ExportViewController * export = [[ExportViewController alloc] initWithImages:pictures];
+	[self presentModalViewController:export animated:YES];
+	[export encodeToFile:tempFile callback:^(NSString * aFile) {
+		NSLog(@"encodage fini");
+		/*NSData * attachmentData = [NSData dataWithContentsOfFile:aFile];
+		NSLog(@"Path: %@", aFile);
+		//[[NSFileManager defaultManager] removeItemAtPath:aFile error:nil];
+		MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
+		[compose setSubject:@"Gif Image"];
+		[compose setMessageBody:@"I have kindly attached a GIF image to this E-mail. I made this GIF using ANGif, an open source Objective-C library for exporting animated GIFs." isHTML:NO];
+		[compose addAttachmentData:attachmentData mimeType:@"image/gif" fileName:@"image.gif"];
+		[compose setMailComposeDelegate:self];
+		[self performSelector:@selector(showViewController:) withObject:compose afterDelay:1];
+		[compose release];
+		[self dismissModalViewControllerAnimated:YES];*/
+	}];
+	[export release];
 }
 
 - (IBAction)takePicture:(id)sender {
@@ -194,7 +194,6 @@
 	[imageView setFrame:CGRectMake(THUMBS_GAP + pictures.count * (THUMBS_GAP + THUMBS_SIZE), THUMBS_GAP, THUMBS_SIZE, THUMBS_SIZE)];
 	[takenImagesScroller addSubview:imageView];
 	
-	[pictures addObject:picture];
 	
 	takenImagesScroller.contentSize = CGSizeMake(pictures.count * (THUMBS_GAP + THUMBS_SIZE) + THUMBS_GAP, 2 * THUMBS_GAP + THUMBS_SIZE);
 	
@@ -203,7 +202,7 @@
 	
 	
 	playButton.enabled = YES;
-	
+	doneButton.enabled = YES;
 	
 	overlayImage.image = picture;
 }
@@ -254,7 +253,16 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	UIImage *pickedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-	UIImage *resized = [pickedImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:pickedImage.size interpolationQuality:kCGInterpolationHigh];
+	
+	// pour fixer l'orientation
+	UIImage *resized = [pickedImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(pickedImage.size.width * 0.5, pickedImage.size.height * 0.5) interpolationQuality:kCGInterpolationMedium];
+	
+	// compression jpeg
+	NSData *jpeg = UIImageJPEGRepresentation(resized, 0.7);
+	
+	resized = [UIImage imageWithData:jpeg];
+	
+	[pictures addObject:resized];
 	
 	[self addTakenPicture:resized];
 	
