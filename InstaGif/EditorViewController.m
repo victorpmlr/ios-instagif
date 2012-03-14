@@ -9,6 +9,7 @@
 #import "EditorViewController.h"
 #import "UIImage+Resize.h"
 #import "ExportViewController.h"
+#import "ViewerViewController.h";
 
 @implementation EditorViewController
 
@@ -119,9 +120,8 @@
 {
 	animationPlayer = [[[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 40.0)] autorelease];
 	
-	
 	animationPlayer.animationImages = pictures;
-	animationPlayer.animationDuration = 0.35;
+	animationPlayer.animationDuration = pictures.count * 0.3;
 	animationPlayer.animationRepeatCount = 0;
 	[animationPlayer startAnimating];
 	[self.view addSubview:animationPlayer];
@@ -141,25 +141,38 @@
 }
 
 - (IBAction)doneHandler:(id)sender {
-	NSString * tempFile = [NSString stringWithFormat:@"%@/%ld", NSTemporaryDirectory(), time(NULL)];
 	
-	ExportViewController * export = [[ExportViewController alloc] initWithImages:pictures];
-	[self presentModalViewController:export animated:YES];
-	[export encodeToFile:tempFile callback:^(NSString * aFile) {
-		NSLog(@"encodage fini");
-		/*NSData * attachmentData = [NSData dataWithContentsOfFile:aFile];
-		NSLog(@"Path: %@", aFile);
-		//[[NSFileManager defaultManager] removeItemAtPath:aFile error:nil];
-		MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
-		[compose setSubject:@"Gif Image"];
-		[compose setMessageBody:@"I have kindly attached a GIF image to this E-mail. I made this GIF using ANGif, an open source Objective-C library for exporting animated GIFs." isHTML:NO];
-		[compose addAttachmentData:attachmentData mimeType:@"image/gif" fileName:@"image.gif"];
-		[compose setMailComposeDelegate:self];
-		[self performSelector:@selector(showViewController:) withObject:compose afterDelay:1];
-		[compose release];
-		[self dismissModalViewControllerAnimated:YES];*/
-	}];
-	[export release];
+	// Save pics
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *baseFolderPath = [paths objectAtIndex:0];
+	NSString *folderName;
+	
+	NSInteger *count = 0;
+	NSString *folderPath;
+	do {
+		folderName = [NSString stringWithFormat:@"%d", count];
+		folderPath = [baseFolderPath stringByAppendingPathComponent:folderName];
+		++count;
+	} while ([fileManager fileExistsAtPath:folderPath]);
+	
+	[fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:nil];
+	
+	for (int i = 0; i < [pictures count]; i++)
+	{
+		UIImage * image = [pictures objectAtIndex:i];
+		
+		NSString *fileName = [NSString stringWithFormat:@"%d.jpg", i];
+		NSString *filePath = [folderPath stringByAppendingPathComponent:fileName];
+		NSData *jpeg = UIImageJPEGRepresentation(image, 0.7);
+		[jpeg writeToFile:filePath atomically:YES];	
+	}
+	//
+	
+	ViewerViewController *viewer = [[[ViewerViewController alloc] init] autorelease];
+	[viewer setImages:pictures];
+	[self presentModalViewController:viewer animated:YES];
 }
 
 - (IBAction)takePicture:(id)sender {
@@ -167,7 +180,6 @@
 }
 
 - (IBAction)cancelEditor:(id)sender {
-	// TODO : confirm
 	[self.imagePickerController dismissModalViewControllerAnimated:YES];
 }
 
@@ -207,7 +219,7 @@
     
     
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:picture];
-	[imageView setFrame:CGRectMake(THUMBS_GAP + pictures.count * (THUMBS_GAP + THUMBS_SIZE), THUMBS_GAP, THUMBS_SIZE, THUMBS_SIZE)];
+	[imageView setFrame:CGRectMake(THUMBS_GAP + (pictures.count - 1) * (THUMBS_GAP + THUMBS_SIZE), THUMBS_GAP, THUMBS_SIZE, THUMBS_SIZE)];
 	[takenImagesScroller addSubview:imageView];
 	
 	takenImagesScroller.contentSize = CGSizeMake(pictures.count * (THUMBS_GAP + THUMBS_SIZE) + THUMBS_GAP, 2 * THUMBS_GAP + THUMBS_SIZE);
