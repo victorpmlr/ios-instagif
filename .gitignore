@@ -13,3 +13,9 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+InstaGif.xcodeproj/project.pbxproj
+
+.DS_Store
+
+InstaGif.xcodeproj/project.xcworkspace/xcuserdata/vpamelard.xcuserdatad/UserInterfaceState.xcuserstate
+
